@@ -1,0 +1,29 @@
+// Copyright (c) 2008, Naoya Shimada <shima3amihs at gmail.com> 
+// The PHP License, version 3.01
+
+function url2cmd(url)
+{
+    if (!url.match(/(?:ASIN|product\-description|product|dp|detail\/\-\/[^\/]+|detail\/\-)\/([a-zA-Z0-9]{10})/)) {
+        try { pne_url2a(url); } catch(e) { document.write('<a href="'+url+'" target="_blank">'+url+'</a>'); }
+        return;
+    }
+    var id = RegExp.$1;
+    var tag = url.match(/tag=([a-z0-9_\-]+)/i) ? RegExp.$1 : false;
+    if (!main(id,tag)) {
+        try { pne_url2a(url); } catch(e) { document.write('<a href="'+url+'" target="_blank">'+url+'</a>'); }
+    }
+}
+
+function main(id, tag)
+{
+    if (!id.match(/^[a-z0-9]{10}$/i)) {
+        return false;
+    }
+    var url = './?m=pc&a=page_h_amazoncmd&id=' + id + (tag ? '&tag=' + tag : '');
+    var html = ''
+    + '<iframe MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" BORDERCOLOR="#000000" src="' + url + '" name="sample" width="420" height="320">'
+    + 'この部分はインラインフレームを使用しています。'
+    + '</iframe>';
+    document.write(html);
+    return true;
+}

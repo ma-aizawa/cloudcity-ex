@@ -1,0 +1,15 @@
+config.php
+
+var/function_cache/*
+!var/function_cache/.gitkeep
+var/img_cache/*
+!var/img_cache/.gitkeep
+var/log/*
+!var/log/.gitkeep
+var/rss_cache/*
+!var/rss_cache/.gitkeep
+var/templates_c/*
+!var/templates_c/.gitkeep
+var/tmp/*
+!var/tmp/.gitkeep
+
