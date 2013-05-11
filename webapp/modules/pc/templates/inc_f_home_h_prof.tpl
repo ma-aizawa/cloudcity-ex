@@ -319,18 +319,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul></div>
 </td></tr>
 ({/if})
-({if $c_rss_cache_list})
-<tr class="friendRecentBlog"><th>最新Blog</th><td>
-<ul class="articleList">
-({foreach from=$c_rss_cache_list item=item})
-<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"|t_truncate:30})</a></li>
-({/foreach})
-</ul>
-<div class="moreInfo"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member_id})#blog">もっと読む</a></li>
-</ul></div>
-</td></tr>
-({/if})
 ({if $c_review_list})
 <tr class="friendRecentReview"><th>最新レビュー</th><td>
 <ul class="articleList">
