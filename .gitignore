@@ -1,5 +1,7 @@
 config.php
 
+!webapp*/lib/OpenPNE/Config.php
+
 var/function_cache/*
 !var/function_cache/.gitkeep
 var/img_cache/*
