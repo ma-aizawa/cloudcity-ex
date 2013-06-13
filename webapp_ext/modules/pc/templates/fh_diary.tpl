@@ -248,7 +248,7 @@
     ({t_form_block _enctype=file m=pc a=page_fh_diary_comment_confirm})
     <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
     <table><tr>
-    <th>本文</th><td><textarea name="body" id="comment_box" rows="8" cols="40">({$requests.body})</textarea></td>
+    <th>本文</th><td><textarea name="body" id="comment_box" rows="8" cols="40">イイネ☆({$requests.body})</textarea></td>
     </tr><tr>
     <th>写真1</th><td><input type="file" class="input_file" name="upfile_1" size="40" /></td>
     </tr><tr>
