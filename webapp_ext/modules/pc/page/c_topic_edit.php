@@ -22,24 +22,24 @@ class pc_page_c_topic_edit extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if(!$is_made){
-	        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
-	            handle_kengen_error();
-	        }
-	        if (!db_commu_is_c_topic_admin($c_commu_topic_id, $u) &&
-	            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
-	            handle_kengen_error();
-	        }
-	        $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
-	        if ($c_commu['is_topic'] == 'admin_only' &&
-	            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
-	            handle_kengen_error();
-	        }
-	        if ($c_commu['is_topic'] == 'member' &&
-	            !db_commu_is_c_commu_member($c_commu_id, $u)) {
-	            handle_kengen_error();
-	        }
-	    }
+        if(!$is_made) {
+            if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+                handle_kengen_error();
+            }
+            if (!db_commu_is_c_topic_admin($c_commu_topic_id, $u) &&
+                !db_commu_is_c_commu_admin($c_commu_id, $u)) {
+                handle_kengen_error();
+            }
+            $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
+            if ($c_commu['is_topic'] == 'admin_only' &&
+                !db_commu_is_c_commu_admin($c_commu_id, $u)) {
+                handle_kengen_error();
+            }
+            if ($c_commu['is_topic'] == 'member' &&
+                !db_commu_is_c_commu_member($c_commu_id, $u)) {
+                handle_kengen_error();
+            }
+        }
         //---
 
         if ($c_topic['event_flag']) {
