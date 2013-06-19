@@ -559,6 +559,31 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
     return $list;
 }
 
+/**
+ * 全体日記の最新コメント履歴取得
+ *
+ * @param   int $limit
+ * @return  array_of_array  (c_diary.*, nickname)
+ */
+function p_h_home_c_diary_new_comment_list($limit)
+{
+    $sql = 'SELECT cdc.c_diary_id, cdc.r_datetime AS maxdate, cdc.c_member_id, cd.* '
+         . ' FROM c_diary_comment AS cdc'
+         . ' INNER JOIN c_diary AS cd USING (c_diary_id)'
+         . ' GROUP BY cdc.c_diary_id'
+         . ' ORDER BY maxdate DESC';
+	$params = array();
+    $list = db_get_all_limit($sql, 0, $limit, $params);
+
+    foreach ($list as $key => $value) {
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['r_datetime'] = $value['maxdate'];
+        $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+    }
+
+    return $list;
+}
+
 function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id, $page, $page_size)
 {
     $select = 'SELECT cdcl.c_diary_id, cdcl.r_datetime AS maxdate, cd.*';

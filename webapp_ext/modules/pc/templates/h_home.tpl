@@ -460,12 +460,26 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul></div>
 </td></tr>
 ({/if})
+
+({if $c_rss_cache_list})
+<tr><th>({$WORD_MY_FRIEND})<br />最新Blog</th><td>
+<ul class="articleList">
+({foreach from=$c_rss_cache_list item=item})
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"|t_truncate:30})</a> (({$item.c_member.nickname}))</li>
+({/foreach})
+</ul>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_diary_list_friend})#blog">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
+
 </table>
 </div></div>
 ({* }}} *})
 ({/if})
 
-({if $c_diary_list_all || $c_topic_list_all})
+({if $c_diary_list_all || $c_topic_list_all || $c_diary_comment_list_all})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
 <div class="partsHeading"><h3>全体の最新情報</h3><p class="link"><a href="({t_url m=pc a=page_h_config})#is_display_newdiary_home_0">表示設定変更</a></p></div>
@@ -482,6 +496,20 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul></div>
 </td></tr>
 ({/if})
+
+({if $c_diary_comment_list_all})
+<tr class="allRecentDiary"><th>最新コメントがついた日記</th><td>
+<ul class="articleList">
+({foreach from=$c_diary_comment_list_all item=item})
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})">({$item.subject|t_truncate:30}) (({$item.num_comment|default:0}))</a> (({$item.nickname|default:"&nbsp;"})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
+({/foreach})
+</ul>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
+
 ({if $c_topic_list_all})
 <tr class="allRecentCommunityTopicComment"><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
 <ul class="articleList">
