@@ -1,3 +1,5 @@
+<input type="hidden" name="c_ccn_default_tab" id="c_ccn_default_tab" value="1">
+
 <script type="text/javascript" src="js/navi.min.js"></script>
 
 <link rel="stylesheet" href="css/navi.css" type="text/css" media="screen" />
@@ -10,6 +12,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbb964', endC
 </style>
 <![endif]-->
 
+<div id="nav">
 <ul id="navigation">
 <li id="nav_01"><a href="#">タブ1</a></li>
 <li id="nav_02" class="selected"><a href="#">タブ2</a></li>
@@ -42,4 +45,34 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbb964', endC
 <div id="nav_06_c">
 タブ6の内容
 </div><!--end of nav_06-->
+
+<div class="partsHeading"><a href="javascript:setTab(false);">ニュースを全部表示する</a></div>
 </div><!--end of nav_contents-->
+
+</div>
+
+<div id="nav_all">
+<div id="cnn">
+ <div class="cnnheader">
+
+  <!--タイトルバナー-->
+  <div class="title">
+   <img width="288" height="52" src="http://go.otaking-ex.com/PN8aBTOC" alt="" />
+  </div>
+
+  <!--ナンバー表示-->
+  <div class="no">
+   <p><span id="date_of_today"><!--ここには何も書かなくて大丈夫--></span>号</p>
+  </div>
+
+ </div>
+ <!--記事スペース-->
+ <div class="body" id="nav_all_contents">
+<!--ここには何も書かなくて大丈夫-->
+ </div>
+ 
+<hr>
+<div class="partsHeading"><a href="javascript:setTab(true);">ニュースをタブで表示する</a></div>
+
+</div>
+</div>

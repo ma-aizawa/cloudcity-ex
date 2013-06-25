@@ -93,16 +93,22 @@ ul#navigation li.selected a:link, ul#navigation li.selected a:visited {
 	background-color: #fffcdb;
 }
 div#nav_contents{
-	width: 691px;
-	padding:10px;
+	width: 711px;
+	padding:0;
 	margin: 0 0 10px;
 	border: 2px solid #dbb964;
 	background-color: #fffcdb;
 }
+div#nav_01_c,
 div#nav_02_c,
 div#nav_03_c,
 div#nav_04_c,
 div#nav_05_c,
 div#nav_06_c{
+	display: none;
+	padding: 10px;
+}
+
+div#nav_all, div#nav{
 	display: none;
 }
