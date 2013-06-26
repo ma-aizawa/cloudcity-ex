@@ -938,6 +938,10 @@ function util_get_c_member_config_default()
         'SEND_RANK_UP_MAIL_PC' => 1,
         'SEND_RANK_UP_MAIL_KTAI' => 1,
         'IS_SEARCH_RESULT' => 1,
+        'IS_DISPLAY_FRIEND_BLOG_HOME' => 0,
+        'IS_DISPLAY_FRIEND_ALBUM_HOME' => 0,
+        'IS_DISPLAY_FRIEND_REVIEW_HOME' => 0,
+        'IS_DISPLAY_NEWCOMMENT_HOME' => 1
     );
 
     return $default_config;
