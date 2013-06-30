@@ -305,6 +305,18 @@
 <p>※マイホームに({$WORD_MY_FRIEND})の最新blogを表示します。</p>
 </td>
 </tr>
+
+<tr>
+<th>クラウドシティニュース表示</th>
+<td>
+<ul>
+<li><input type="radio" class="input_radio" name="IS_CCN_DEFAULT_TAB" id="is_ccn_default_tab_0" value="1"({if $C_MEMBER_CONFIG.IS_CCN_DEFAULT_TAB}) checked="checked"({/if}) /><label for="is_ccn_default_tab_0">タブで表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_CCN_DEFAULT_TAB" id="is_ccn_default_tab_1" value="0"({if !$C_MEMBER_CONFIG.IS_CCN_DEFAULT_TAB}) checked="checked"({/if}) /><label for="is_ccn_default_tab_1">全体を表示する</label></li>
+</ul>
+<p>※クラウドシティニュースのデフォルト表示をタブにするか、全体を表示するか選択します。</p>
+</td>
+</tr>
+
 ({/if})
 
 ({if $smarty.const.USE_BOOKMARK_FEED})
