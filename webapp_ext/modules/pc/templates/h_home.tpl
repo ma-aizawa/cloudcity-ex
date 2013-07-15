@@ -505,7 +505,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/foreach})
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
+<li><a href="({t_url m=pc a=page_h_diary_comment_list_all})">もっと読む</a></li>
 </ul></div>
 </td></tr>
 ({/if})
