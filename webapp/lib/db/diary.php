@@ -567,7 +567,7 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
  */
 function p_h_home_c_diary_new_comment_list($limit)
 {
-    $sql = 'SELECT cdc.c_diary_id, cdc.r_datetime AS maxdate, cdc.c_member_id, cd.* '
+    $sql = 'SELECT cdc.c_diary_id, MAX(cdc.r_datetime) AS maxdate, cdc.c_member_id, cd.* '
          . ' FROM c_diary_comment AS cdc'
          . ' INNER JOIN c_diary AS cd USING (c_diary_id)'
          . ' GROUP BY cdc.c_diary_id'
@@ -1361,4 +1361,57 @@ function db_diary_delete4c_member_id($c_member_id)
     db_query($sql, $single);
 }
 
+/**
+ * コメントがついた全ての日記をページを指定して取得する
+ *
+ * @param  int    $page_size
+ * @param  int    $page
+ */
+function k_p_fh_diary_list_c_diary_comment_list_all($page_size, $page)
+{
+    $count = 0;
+    $params = array();
+
+    $sql = 'SELECT cdc.c_diary_id, MAX(cdc.r_datetime) AS maxdate, cd.* '
+         . ' FROM c_diary_comment AS cdc'
+         . ' INNER JOIN c_diary AS cd USING (c_diary_id)'
+         . ' GROUP BY cdc.c_diary_id'
+         . ' ORDER BY maxdate DESC';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($list as $key => $value) {
+
+        // 日記のコメント数を取得
+        $list[$key]['num_comment']  = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+
+        // メンバー情報をプロフィール付きで取得する
+        $list[$key]['c_member']     = db_member_c_member_with_profile($value['c_member_id']);
+
+        $count++;
+    }
+
+    $sql = 'select count(*) from c_diary as cd where exists (select * from c_diary_comment AS cdc where cd.c_diary_id = cdc.c_diary_id)';
+
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+
+        $total_page_num =  ceil($total_num / $page_size);
+
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    return array($list, $prev, $next, $count);
+}
 ?>
